@@ -81,7 +81,7 @@
       "artifactName": "Literaturfinder-${version}-macOS-${arch}.dmg"
     },
     "dmg": {
-      "artifactName": "Literaturfinder-${version}-macOS.dmg"
+      "artifactName": "Literaturfinder-${version}-macOS-${arch}.dmg"
     },
     "linux": {
       "target": ["AppImage"],
