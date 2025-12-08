@@ -1,0 +1,94 @@
+{
+  "name": "literaturfinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:4001 && cross-env NODE_ENV=development electron .\"",
+    "start": "npm run electron:dev",
+    "electron:pack": "npm run build && electron-builder",
+    "electron:dist": "npm run build && electron-builder --publish=never",
+    "dist:win": "npm run build && electron-builder --win portable",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:all": "npm run build && electron-builder --win portable --mac --linux",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.5.2",
+    "@vitejs/plugin-react": "^5.0.3",
+    "autoprefixer": "^10.4.22",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0",
+    "electron": "^38.1.2",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "vite": "^7.1.6",
+    "wait-on": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.literaturfinder.app",
+    "productName": "Literaturfinder",
+    "directories": {
+      "output": "releases/2025-12-08"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      "assets/**"
+    ],
+    "win": {
+      "target": {
+        "target": "portable",
+        "arch": ["x64"]
+      },
+      "icon": "public/icon.png",
+      "forceCodeSigning": false,
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "Literaturfinder-${version}-Windows.exe"
+    },
+    "mac": {
+      "target": {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      },
+      "category": "public.app-category.education",
+      "icon": "public/icon.png",
+      "artifactName": "Literaturfinder-${version}-macOS-${arch}.dmg"
+    },
+    "dmg": {
+      "artifactName": "Literaturfinder-${version}-macOS.dmg"
+    },
+    "linux": {
+      "target": ["AppImage"],
+      "category": "Education",
+      "icon": "public/icon.png",
+      "artifactName": "Literaturfinder-${version}-Linux.AppImage"
+    },
+    "publish": null
+  }
+}
